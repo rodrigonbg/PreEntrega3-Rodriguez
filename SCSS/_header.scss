@@ -189,7 +189,10 @@
 }
 .fa-cart-shopping{
     color: #fff;
-    padding: 0 2%;
+    margin: 0 2%;
+    &:hover{
+        cursor: pointer;
+    }
 }
 
 /* ----------------------------------------------------------------- */

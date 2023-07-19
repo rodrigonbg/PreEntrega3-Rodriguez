@@ -1,0 +1,26 @@
+.main__carritoContainer{
+    margin: $margin-mobile-container; 
+    padding: 10% 0;
+
+    
+}
+
+.tablaCarrito{
+    width:100%;
+    thead{
+        tr{
+            display: flex;
+            justify-content: space-between;
+            padding:5px 0;
+            border-bottom: 2px solid $primary-color;
+        }
+    }
+    tbody{
+        tr{
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0;
+            border-bottom: 1px solid $btn-lightGreen-hoven;
+        }
+    }
+}
