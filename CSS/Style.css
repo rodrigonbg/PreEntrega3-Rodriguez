@@ -439,6 +439,7 @@ body {
 .main__onSale .main__onSale__item .main__onSale__item__info {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .main__onSale .main__onSale__item .main__onSale__item__info .item__name {
   font-size: large;
@@ -446,6 +447,20 @@ body {
   font-weight: 500;
   color: #464646;
 }
+.main__onSale .main__onSale__item .main__onSale__item__info .item__name p {
+  margin: 0;
+}
+.main__onSale .main__onSale__item .main__onSale__item__info .item__price {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+.main__onSale .main__onSale__item .main__onSale__item__info .item__price #precioOriginal {
+  font-size: small;
+  text-decoration: line-through;
+  color: #8B9E70;
+}
+
 /* ----------------------------------------------------------------- */
 /* --------------------------------------------SECCION DE DESTACADOS */
 /* ----------------------------------------------------------------- */
@@ -819,11 +834,20 @@ footer section div {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .main__carritoContainer {
   margin: 2% 5vw 10% 5vw;
-  padding: 10% 0;
+  padding: 5% 0 10% 0;
+}
+
+main#carrito h1 { /* Titulos H1 */
+  font: normal 400 250% "Dosis", sans-serif;
+  margin: 20px 0;
+  color: black;
+  text-align: center;
+  width: 100%;
 }
 
 .tablaCarrito {
   width: 100%;
+  font-size: smaller;
 }
 .tablaCarrito thead tr {
   display: flex;
@@ -837,8 +861,24 @@ footer section div {
   padding: 20px 0;
   border-bottom: 1px solid #768561;
 }
+.tablaCarrito tbody tr #cantidad {
+  width: 20%;
+}
+.tablaCarrito tbody tr #cantidad input {
+  width: 30%;
+}
+.tablaCarrito tfoot {
+  display: flex;
+  justify-content: end;
+  margin: 20px 0;
+  margin-right: 20px;
+}
 
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.btnCarrito {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+} /* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* ------------------------------------------------------------------ CSS PARA PAG 404 --------------------------------------------------------------------------------- */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 body#error_page {

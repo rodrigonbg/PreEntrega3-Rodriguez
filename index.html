@@ -143,7 +143,7 @@
             <div class="row">
                 <h2>Ofertas</h2>
             </div>
-            <div class="row"><!-- SECCION DE OFERTAS -->
+            <div id="itemsOnSale" class="row"><!-- SECCION DE OFERTAS -->
 
 
                 <div class="main__onSale col-lg-2 col-md-3 col-sm-4 col-6 ">
@@ -157,7 +157,7 @@
                             <div class="saleTag"><!-- ETIQUETA DE DESCUENTO -->
                                 <span class="badge rounded-0"><i class="fa-solid fa-arrow-down"></i>29%</span>
                             </div>
-                            <img src="Imagenes/Productos/Ofertas/Macetas negras.jpg" alt="Macetas negras"><!-- IMAGEN DEL PRODUCTO -->
+                            <img src="Imagenes/Productos/Ofertas/MacetasNegras.jpg" alt="Macetas negras"><!-- IMAGEN DEL PRODUCTO -->
                             <div class=""><!-- COTON DEL CARRRITO -->
                                 <button class="btn btn-white shadow-sm rounded-pill bg-white cart-btn"><i id="articles" class="fa-solid fa-cart-shopping"></i>Añadir</button>
                             </div>
@@ -167,7 +167,8 @@
                                 <p>Maceta</p>
                             </div>
                             <div class="item__price">
-                                <span>$599</span>
+                                <span id="precioOnSale">$599</span>
+                                <span id="precioOriginal">$299</span>
                             </div>
                         </div>    
                     </div>     
@@ -184,7 +185,7 @@
                             <div class="saleTag"><!-- ETIQUETA DE DESCUENTO -->
                                 <span class="badge rounded-0"><i class="fa-solid fa-arrow-down"></i>29%</span>
                             </div>
-                            <img src="Imagenes/Productos/Ofertas/Macetas blancas.jpg" alt="Macetas blancas"><!-- IMAGEN DEL PRODUCTO -->
+                            <img src="Imagenes/Productos/Ofertas/MacetasBlancas.jpg" alt="Macetas blancas"><!-- IMAGEN DEL PRODUCTO -->
                             <div class=""><!-- COTON DEL CARRRITO -->
                                 <button class="btn btn-white shadow-sm rounded-pill bg-white cart-btn"><i id="articles" class="fa-solid fa-cart-shopping"></i>Añadir</button>
                             </div>
@@ -346,7 +347,7 @@
                             <div class="saleTag"><!-- ETIQUETA DE DESCUENTO -->
                                 <span class="badge rounded-0"><i class="fa-solid fa-arrow-down"></i>29%</span>
                             </div>
-                            <img src="Imagenes/Productos/Ofertas/Lampara de pie.png" alt="Lampara de pie"><!-- IMAGEN DEL PRODUCTO -->
+                            <img src="Imagenes/Productos/Ofertas/LamparaDePie.png" alt="Lampara de pie"><!-- IMAGEN DEL PRODUCTO -->
                             <div class=""><!-- COTON DEL CARRRITO -->
                                 <button class="btn btn-white shadow-sm rounded-pill bg-white cart-btn"><i id="articles" class="fa-solid fa-cart-shopping"></i>Añadir</button>
                             </div>
@@ -361,14 +362,12 @@
                         </div>    
                     </div>     
                 </div>
-
-
             </div>
     
            
  
             <h2>Destacados</h2>
-            <section class="main__newArrivals"><!-- Sección de destacados -->
+            <section id="itemsDestacados" class="main__newArrivals"><!-- Sección de destacados -->
                 <div class="main__newArrivals__item">
                     <img src="Imagenes/Productos/Destacados/Armario.png" alt="Armario de madera">
                     <p class="main__newArrivals__item__info">Armario: </p>

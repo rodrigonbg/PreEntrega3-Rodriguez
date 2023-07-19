@@ -1,12 +1,23 @@
 .main__carritoContainer{
     margin: $margin-mobile-container; 
-    padding: 10% 0;
+    padding: 5% 0 10% 0;
 
     
 }
 
+main#carrito{
+    h1{/* Titulos H1 */
+        font: $h1-mobile;
+        margin: 20px 0 ;
+        color: black;
+        text-align: center;
+        width: 100%;
+    }
+}
+
 .tablaCarrito{
     width:100%;
+    font-size: smaller;
     thead{
         tr{
             display: flex;
@@ -21,6 +32,25 @@
             justify-content: space-between;
             padding: 20px 0;
             border-bottom: 1px solid $btn-lightGreen-hoven;
+            #cantidad{
+                width: 20%;
+                input{
+                    width: 30%;
+                }
+            }
         }
+
     }
+    tfoot{
+        display: flex;
+        justify-content: end;
+        margin: 20px 0;
+        margin-right: 20px;
+    }
+}
+
+.btnCarrito{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
 }
