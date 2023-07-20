@@ -834,51 +834,87 @@ footer section div {
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .main__carritoContainer {
   margin: 2% 5vw 10% 5vw;
-  padding: 5% 0 10% 0;
+  padding-bottom: 10%;
 }
 
 main#carrito h1 { /* Titulos H1 */
   font: normal 400 250% "Dosis", sans-serif;
+  padding-bottom: 5%;
   margin: 20px 0;
   color: black;
   text-align: center;
   width: 100%;
 }
 
+/* lista de productos en carrito */
 .tablaCarrito {
   width: 100%;
   font-size: smaller;
 }
-.tablaCarrito thead tr {
+.tablaCarrito .cabezaLista {
   display: flex;
   justify-content: space-between;
   padding: 5px 0;
   border-bottom: 2px solid #8B9E70;
 }
-.tablaCarrito tbody tr {
+.tablaCarrito .cabezaLista p {
+  display: flex;
+  justify-content: center;
+  width: 14%;
+}
+.tablaCarrito .cuerpoLista .prodCarrito {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 20px 0;
   border-bottom: 1px solid #768561;
 }
-.tablaCarrito tbody tr #cantidad {
-  width: 20%;
+.tablaCarrito .cuerpoLista .prodCarrito div {
+  display: flex;
+  justify-content: center;
+  width: 14%;
+  margin: 0;
 }
-.tablaCarrito tbody tr #cantidad input {
-  width: 30%;
+.tablaCarrito .cuerpoLista .prodCarrito div .imgCarrito {
+  width: 5vw;
 }
-.tablaCarrito tfoot {
+.tablaCarrito .cuerpoLista .prodCarrito div input {
+  width: 50%;
+}
+.tablaCarrito .cuerpoLista .prodCarrito p {
+  display: flex;
+  justify-content: center;
+  width: 14%;
+  margin: 0;
+}
+.tablaCarrito .pieLista {
   display: flex;
   justify-content: end;
   margin: 20px 0;
   margin-right: 20px;
 }
 
-.btnCarrito {
+/* Botones */
+.botonesCarrito {
   margin-top: 30px;
   display: flex;
   justify-content: space-between;
-} /* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+}
+.botonesCarrito .btn {
+  width: 30%;
+  padding: 15px 0;
+  margin: 1% 0;
+  border-radius: 30px;
+  background-color: #8B9E70;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+.botonesCarrito .btn:hover {
+  background-color: #3a422f;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* ------------------------------------------------------------------ CSS PARA PAG 404 --------------------------------------------------------------------------------- */
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 body#error_page {

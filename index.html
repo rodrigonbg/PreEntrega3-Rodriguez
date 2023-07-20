@@ -22,10 +22,11 @@
     <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/87469b5455.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.css" integrity="sha512-Z0kTB03S7BU+JFU0nw9mjSBcRnZm2Bvm0tzOX9/OuOuz01XQfOpa0w/N9u6Jf2f1OAdegdIPWZ9nIZZ+keEvBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script>alert(window.FontAwesome.config)</script>
 
     <!-- JS -->
-    <script src="../JS/index.js"></script>  
+    <script defer src="JS/general.js"></script>
+    <script defer src="JS/carrito.js"></script>
+    <script defer src="JS/index.js"></script>  
 </head>
 <body>
     <header>
@@ -51,7 +52,7 @@
                 <input class="header__searchButton" type="button" value="buscar">
 
                 <!-- carrito -->
-                <i id="car" class="fa-solid fa-cart-shopping" onclick="irAlCarrito()"></i>
+                <i id="car" class="fa-solid fa-cart-shopping" onclick="irAlCarritoDesdeIndex()"></i>
                 
                 <!-- Boton de menú -->
                 <div>
@@ -143,276 +144,15 @@
             <div class="row">
                 <h2>Ofertas</h2>
             </div>
-            <div id="itemsOnSale" class="row"><!-- SECCION DE OFERTAS -->
+            <div id="itemsOnSale" class="row"><!-- SECCION DE OFERTAS AGREGADAS DESDE JS-->
 
-
-                <div class="main__onSale col-lg-2 col-md-3 col-sm-4 col-6 ">
-                    <div class="main__onSale__item"><!-- PRODUCTOS -->
-                        <div class="main__onSale__item__innerBox"><!-- INTERIOR DE LA CAJA (ICONOS, IMG Y BOTON CARRITO) -->
-                            <div class="icons"><!-- icons -->
-                                <!-- links a sin hrefs aun-->
-                                <a class="text-decoration-none "><i class="fa-solid fa-heart"></i></a>
-                                <a class="text-decoration-none "><i class="fa-solid fa-eye"></i></a>
-                            </div>
-                            <div class="saleTag"><!-- ETIQUETA DE DESCUENTO -->
-                                <span class="badge rounded-0"><i class="fa-solid fa-arrow-down"></i>29%</span>
-                            </div>
-                            <img src="Imagenes/Productos/Ofertas/MacetasNegras.jpg" alt="Macetas negras"><!-- IMAGEN DEL PRODUCTO -->
-                            <div class=""><!-- COTON DEL CARRRITO -->
-                                <button class="btn btn-white shadow-sm rounded-pill bg-white cart-btn"><i id="articles" class="fa-solid fa-cart-shopping"></i>Añadir</button>
-                            </div>
-                        </div>
-                        <div class="main__onSale__item__info"> <!-- INFO DEL PRODUCTO -->
-                            <div class="item__name">
-                                <p>Maceta</p>
-                            </div>
-                            <div class="item__price">
-                                <span id="precioOnSale">$599</span>
-                                <span id="precioOriginal">$299</span>
-                            </div>
-                        </div>    
-                    </div>     
-                </div>
-
-                <div class="main__onSale col-lg-2 col-md-3 col-sm-4 col-6 ">
-                    <div class="main__onSale__item"><!-- PRODUCTOS -->
-                        <div class="main__onSale__item__innerBox"><!-- INTERIOR DE LA CAJA (ICONOS, IMG Y BOTON CARRITO) -->
-                            <div class="icons"><!-- icons -->
-                                <!-- links a sin hrefs aun-->
-                                <a class="text-decoration-none"><i class="fa-solid fa-heart"></i></a>
-                                <a class="text-decoration-none"><i class="fa-solid fa-eye"></i></a>
-                            </div>
-                            <div class="saleTag"><!-- ETIQUETA DE DESCUENTO -->
-                                <span class="badge rounded-0"><i class="fa-solid fa-arrow-down"></i>29%</span>
-                            </div>
-                            <img src="Imagenes/Productos/Ofertas/MacetasBlancas.jpg" alt="Macetas blancas"><!-- IMAGEN DEL PRODUCTO -->
-                            <div class=""><!-- COTON DEL CARRRITO -->
-                                <button class="btn btn-white shadow-sm rounded-pill bg-white cart-btn"><i id="articles" class="fa-solid fa-cart-shopping"></i>Añadir</button>
-                            </div>
-                        </div>
-                        <div class="main__onSale__item__info"> <!-- INFO DEL PRODUCTO -->
-                            <div class="item__name">
-                                <p>Maceta</p>
-                            </div>
-                            <div class="item__price">
-                                <span>$499</span>
-                            </div>
-                        </div>    
-                    </div>     
-                </div>
-
-                <div class="main__onSale col-lg-2 col-md-3 col-sm-4 col-6 ">
-                    <div class="main__onSale__item"><!-- PRODUCTOS -->
-                        <div class="main__onSale__item__innerBox"><!-- INTERIOR DE LA CAJA (ICONOS, IMG Y BOTON CARRITO) -->
-                            <div class="icons"><!-- icons -->
-                                <!-- links a sin hrefs aun-->
-                                <a class="text-decoration-none"><i class="fa-solid fa-heart"></i></a>
-                                <a class="text-decoration-none"><i class="fa-solid fa-eye"></i></a>
-                            </div>
-                            <div class="saleTag"><!-- ETIQUETA DE DESCUENTO -->
-                                <span class="badge rounded-0"><i class="fa-solid fa-arrow-down"></i>29%</span>
-                            </div>
-                            <img src="Imagenes/Productos/Ofertas/Mesita.jpg" alt="Mesita de madera"><!-- IMAGEN DEL PRODUCTO -->
-                            <div class=""><!-- COTON DEL CARRRITO -->
-                                <button class="btn btn-white shadow-sm rounded-pill bg-white cart-btn"><i id="articles" class="fa-solid fa-cart-shopping"></i>Añadir</button>
-                            </div>
-                        </div>
-                        <div class="main__onSale__item__info"> <!-- INFO DEL PRODUCTO -->
-                            <div class="item__name">
-                                <p>Mesita</p>
-                            </div>
-                            <div class="item__price">
-                                <span>$1699</span>
-                            </div>
-                        </div>    
-                    </div>     
-                </div>
-
-                <div class="main__onSale col-lg-2 col-md-3 col-sm-4 col-6 ">
-                    <div class="main__onSale__item"><!-- PRODUCTOS -->
-                        <div class="main__onSale__item__innerBox"><!-- INTERIOR DE LA CAJA (ICONOS, IMG Y BOTON CARRITO) -->
-                            <div class="icons"><!-- icons -->
-                                <!-- links a sin hrefs aun-->
-                                <a class="text-decoration-none"><i class="fa-solid fa-heart"></i></a>
-                                <a class="text-decoration-none"><i class="fa-solid fa-eye"></i></a>
-                            </div>
-                            <div class="saleTag"><!-- ETIQUETA DE DESCUENTO -->
-                                <span class="badge rounded-0"><i class="fa-solid fa-arrow-down"></i>29%</span>
-                            </div>
-                            <img src="Imagenes/Productos/Ofertas/Estantería.png" alt="Biblioteca"><!-- IMAGEN DEL PRODUCTO -->
-                            <div class=""><!-- COTON DEL CARRRITO -->
-                                <button class="btn btn-white shadow-sm rounded-pill bg-white cart-btn"><i id="articles" class="fa-solid fa-cart-shopping"></i>Añadir</button>
-                            </div>
-                        </div>
-                        <div class="main__onSale__item__info"> <!-- INFO DEL PRODUCTO -->
-                            <div class="item__name">
-                                <p>Biblioteca</p>
-                            </div>
-                            <div class="item__price">
-                                <span>$1999</span>
-                            </div>
-                        </div>    
-                    </div>     
-                </div>
-
-                <div class="main__onSale col-lg-2 col-md-3 col-sm-4 col-6 ">
-                    <div class="main__onSale__item"><!-- PRODUCTOS -->
-                        <div class="main__onSale__item__innerBox"><!-- INTERIOR DE LA CAJA (ICONOS, IMG Y BOTON CARRITO) -->
-                            <div class="icons"><!-- icons -->
-                                <!-- links a sin hrefs aun-->
-                                <a class="text-decoration-none"><i class="fa-solid fa-heart"></i></a>
-                                <a class="text-decoration-none"><i class="fa-solid fa-eye"></i></a>
-                            </div>
-                            <div class="saleTag"><!-- ETIQUETA DE DESCUENTO -->
-                                <span class="badge rounded-0"><i class="fa-solid fa-arrow-down"></i>29%</span>
-                            </div>
-                            <img src="Imagenes/Productos/Ofertas/estanteria2.png" alt="Estantería"><!-- IMAGEN DEL PRODUCTO -->
-                            <div class=""><!-- COTON DEL CARRRITO -->
-                                <button class="btn btn-white shadow-sm rounded-pill bg-white cart-btn"><i id="articles" class="fa-solid fa-cart-shopping"></i>Añadir</button>
-                            </div>
-                        </div>
-                        <div class="main__onSale__item__info"> <!-- INFO DEL PRODUCTO -->
-                            <div class="item__name">
-                                <p>Estantería</p>
-                            </div>
-                            <div class="item__price">
-                                <span>$1899</span>
-                            </div>
-                        </div>    
-                    </div>     
-                </div>
-
-                <div class="main__onSale col-lg-2 col-md-3 col-sm-4 col-6 ">
-                    <div class="main__onSale__item"><!-- PRODUCTOS -->
-                        <div class="main__onSale__item__innerBox"><!-- INTERIOR DE LA CAJA (ICONOS, IMG Y BOTON CARRITO) -->
-                            <div class="icons"><!-- icons -->
-                                <!-- links a sin hrefs aun-->
-                                <a class="text-decoration-none"><i class="fa-solid fa-heart"></i></a>
-                                <a class="text-decoration-none"><i class="fa-solid fa-eye"></i></a>
-                            </div>
-                            <div class="saleTag"><!-- ETIQUETA DE DESCUENTO -->
-                                <span class="badge rounded-0"><i class="fa-solid fa-arrow-down"></i>29%</span>
-                            </div>
-                            <img src="Imagenes/Productos/Ofertas/Sofa.png" alt="Sofa de un cuerpo"><!-- IMAGEN DEL PRODUCTO -->
-                            <div class=""><!-- COTON DEL CARRRITO -->
-                                <button class="btn btn-white shadow-sm rounded-pill bg-white cart-btn"><i id="articles" class="fa-solid fa-cart-shopping"></i>Añadir</button>
-                            </div>
-                        </div>
-                        <div class="main__onSale__item__info"> <!-- INFO DEL PRODUCTO -->
-                            <div class="item__name">
-                                <p>Sofa un cuerpo</p>
-                            </div>
-                            <div class="item__price">
-                                <span>$6500</span>
-                            </div>
-                        </div>    
-                    </div>     
-                </div>
-
-                <div class="main__onSale col-lg-2 col-md-3 col-sm-4 col-6 ">
-                    <div class="main__onSale__item"><!-- PRODUCTOS -->
-                        <div class="main__onSale__item__innerBox"><!-- INTERIOR DE LA CAJA (ICONOS, IMG Y BOTON CARRITO) -->
-                            <div class="icons"><!-- icons -->
-                                <!-- links a sin hrefs aun-->
-                                <a class="text-decoration-none"><i class="fa-solid fa-heart"></i></a>
-                                <a class="text-decoration-none"><i class="fa-solid fa-eye"></i></a>
-                            </div>
-                            <div class="saleTag"><!-- ETIQUETA DE DESCUENTO -->
-                                <span class="badge rounded-0"><i class="fa-solid fa-arrow-down"></i>29%</span>
-                            </div>
-                            <img src="Imagenes/Productos/Ofertas/Boxes.jpg" alt="Boxes de decoración"><!-- IMAGEN DEL PRODUCTO -->
-                            <div class=""><!-- COTON DEL CARRRITO -->
-                                <button class="btn btn-white shadow-sm rounded-pill bg-white cart-btn"><i id="articles" class="fa-solid fa-cart-shopping"></i>Añadir</button>
-                            </div>
-                        </div>
-                        <div class="main__onSale__item__info"> <!-- INFO DEL PRODUCTO -->
-                            <div class="item__name">
-                                <p>Boxes decoración</p>
-                            </div>
-                            <div class="item__price">
-                                <span>$2599</span>
-                            </div>
-                        </div>    
-                    </div>     
-                </div>
-
-                <div class="main__onSale col-lg-2 col-md-3 col-sm-4 col-6 ">
-                    <div class="main__onSale__item"><!-- PRODUCTOS -->
-                        <div class="main__onSale__item__innerBox"><!-- INTERIOR DE LA CAJA (ICONOS, IMG Y BOTON CARRITO) -->
-                            <div class="icons"><!-- icons -->
-                                <!-- links a sin hrefs aun-->
-                                <a class="text-decoration-none"><i class="fa-solid fa-heart"></i></a>
-                                <a class="text-decoration-none"><i class="fa-solid fa-eye"></i></a>
-                            </div>
-                            <div class="saleTag"><!-- ETIQUETA DE DESCUENTO -->
-                                <span class="badge rounded-0"><i class="fa-solid fa-arrow-down"></i>29%</span>
-                            </div>
-                            <img src="Imagenes/Productos/Ofertas/LamparaDePie.png" alt="Lampara de pie"><!-- IMAGEN DEL PRODUCTO -->
-                            <div class=""><!-- COTON DEL CARRRITO -->
-                                <button class="btn btn-white shadow-sm rounded-pill bg-white cart-btn"><i id="articles" class="fa-solid fa-cart-shopping"></i>Añadir</button>
-                            </div>
-                        </div>
-                        <div class="main__onSale__item__info"> <!-- INFO DEL PRODUCTO -->
-                            <div class="item__name">
-                                <p>Lampara de pie</p>
-                            </div>
-                            <div class="item__price">
-                                <span>$1599</span>
-                            </div>
-                        </div>    
-                    </div>     
-                </div>
             </div>
     
            
  
             <h2>Destacados</h2>
-            <section id="itemsDestacados" class="main__newArrivals"><!-- Sección de destacados -->
-                <div class="main__newArrivals__item">
-                    <img src="Imagenes/Productos/Destacados/Armario.png" alt="Armario de madera">
-                    <p class="main__newArrivals__item__info">Armario: </p>
-                    <p class="main__newArrivals__item__price">$8990</p>
-                </div>
-                <div class="main__newArrivals__item">
-                    <img src="Imagenes/Productos/Destacados/Butaca.png" alt="Butaca de madera">
-                    <p class="main__newArrivals__item__info">Butaca: </p>
-                    <p class="main__newArrivals__item__price">$1699</p>
-                </div>
-                <div class="main__newArrivals__item">
-                    <img src="Imagenes/Productos/Destacados/Monstera.png" alt="Planta monstera">
-                    <p class="main__newArrivals__item__info">Monstera: </p>
-                    <p class="main__newArrivals__item__price">$1299</p>
-                </div>
-                <div class="main__newArrivals__item">
-                    <img src="Imagenes/Productos/Destacados/Estanteria.png" alt="Estantería de madera">
-                    <p class="main__newArrivals__item__info">Estantería: </p>
-                    <p class="main__newArrivals__item__price">$1999</p>
-                </div>
-                <div class="main__newArrivals__item">
-                    <img src="Imagenes/Productos/Destacados/Mesita.png" alt="Mesita">
-                    <p class="main__newArrivals__item__info">Mesita: </p>
-                    <p class="main__newArrivals__item__price">$2599</p>
-                </div>
-                <div class="main__newArrivals__item">
-                    <img src="Imagenes/Productos/Destacados/Planta.png" alt="planta">
-                    <p class="main__newArrivals__item__info">Planta: </p>
-                    <p class="main__newArrivals__item__price">$999</p>
-                </div>  
-                <div class="main__newArrivals__item">
-                    <img src="Imagenes/Productos/Destacados/Rack-estanteria.png" alt="Estantería">
-                    <p class="main__newArrivals__item__info">Estantería: </p>
-                    <p class="main__newArrivals__item__price">$2599</p>
-                </div>  
-                <div class="main__newArrivals__item">
-                    <img src="Imagenes/Productos/Destacados/Mesa.png" alt="Mesa de madera">
-                    <p class="main__newArrivals__item__info">Mesa de madera: </p>
-                    <p class="main__newArrivals__item__price">$15999</p>
-                </div>  
-                <div class="main__newArrivals__item">
-                    <img src="Imagenes/Productos/Destacados/Cajonera.png" alt="Cajonera">
-                    <p class="main__newArrivals__item__info">cajonera: </p>
-                    <p class="main__newArrivals__item__price">$3699</p>
-                </div>  
+            <section id="itemsDestacados" class="main__newArrivals"><!-- sECCION DE DESTACADOS AGREGADOS DESDE JS -->
+
             </section>
 
             <h2>Categorías</h2>
