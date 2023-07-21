@@ -14,13 +14,13 @@
     <!-- CSS -->
     <link rel="stylesheet" href="../CSS/Style.css">
     <!-- Logotipo de Fantasy store -->
-    <link rel="shortcut icon" href="Logotipos/Fantasy-Store.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../Logotipos/Fantasy-Store.png" type="image/x-icon">
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- JS -->
-    <script src="../JS/general.js"></script>
-    <script src="../JS/index.js"></script>
+    <script defer src="../JS/general.js"></script>
+    <script defer src="../JS/carrito.js"></script>
 </head>
 <body>
     <header>
@@ -46,7 +46,7 @@
                 <input class="header__searchButton" type="button" value="buscar">
 
                 <!-- carrito -->
-                <i id="car" class="fa-solid fa-cart-shopping" onclick="irAlCarritoDesdePages()"></i>
+                <i id="car" class="fa-solid fa-cart-shopping" onclick="irAlCarritoDesdePages()"><span><!-- Contador desde JS --></span></i>
                 
                 <!-- Boton de menú -->
                 <div>
@@ -103,7 +103,7 @@
             <h1>Carrito de compras</h1>
             <div class="tablaCarrito">
                 <section class="cabezaLista">
-                        <p><Strong>Prenda</Strong></p>
+                        <p><Strong>Articulo</Strong></p>
                         <p><Strong>Descripción</Strong></p>
                         <p><strong>Importe</strong></p>
                         <p><strong>Cantidad</strong></p>
@@ -111,20 +111,9 @@
                         <p><strong>Quitar</strong></p>
                 </section>
 
-                <section class="cuerpoLista">
-                    <div class="prodCarrito">
-                        <div><img class="imgCarrito" src="../Imagenes/Productos/Ofertas/Estantería.png" alt="Estanteria"></div>
-                        <p class="nombreProdCarrito">Mesita</p>
-                        <p class="precioProdCarrito">$5000</p>
-                        <div class="cantidadProdCarrito"><input type="number" min="1" value="1"></div>
-                        <p class="subtotalProdCarrito">precio * producto</p>
-                        <div><i class="fa-solid fa-xmark fa-2x"></i></div>
-                    </div>    
-                </section>
+                <section class="cuerpoLista"><!-- Items generados desde JS --></section>
 
-                <section class="pieLista">
-                    <p class="importeTotal"> El importe total a abonar es de: $---</p>
-                </section>
+                <section class="pieLista"><!-- total generado desde JS --></section>
 
             </div>
             <div class="botonesCarrito">
