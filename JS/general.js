@@ -49,11 +49,11 @@ function tarjetaItemOnSale(producto){/*items en liquidación */
     }else{
         boton = '<i id="articles" class="fa-solid fa-cart-shopping"></i>Añadir'
     }
-    return   `<div class="main__onSale col-lg-2 col-md-3 col-sm-4 col-6 ">
-                 <div class="main__onSale__item"><!-- PRODUCTOS -->
-                     <div class="main__onSale__item__innerBox"><!-- INTERIOR DE LA CAJA (ICONOS, IMG Y BOTON CARRITO) -->
+    let precioConDescuento = ((100-producto.descuento)*producto.precio)/100
+    return   `<div class="main__itemContainer col-lg-2 col-md-3 col-sm-4 col-6 ">
+                 <div class="main__item "><!-- PRODUCTOS -->
+                     <div class="item__innerBox"><!-- INTERIOR DE LA CAJA (ICONOS, IMG Y BOTON CARRITO) -->
                          <div class="icons"><!-- icons -->
-                             <!-- links a sin hrefs aun-->
                              <a class="text-decoration-none "><i class="fa-solid fa-heart"></i></a>
                              <a class="text-decoration-none "><i class="fa-solid fa-eye"></i></a>
                          </div>
@@ -65,12 +65,12 @@ function tarjetaItemOnSale(producto){/*items en liquidación */
                              <button id="${producto.id}" class="btn btn-white shadow-sm rounded-pill bg-white cart-btn">${boton}</button>
                          </div>
                      </div>
-                     <div class="main__onSale__item__info"> <!-- INFO DEL PRODUCTO -->
+                     <div class="item__info"> <!-- INFO DEL PRODUCTO -->
                          <div class="item__name">
                              <p>${producto.nombre}</p>
                          </div>
-                     <div class="item__price">
-                         <span id="precioOnSale">$${((100-producto.descuento)*producto.precio)/100}</span>
+                     <div class="item__price onSale">
+                         <span id="precioOnSale">$${precioConDescuento.toFixed(2)}</span>
                          <span id="precioOriginal">$${producto.precio}</span>
                      </div>
                      </div>    
@@ -78,25 +78,61 @@ function tarjetaItemOnSale(producto){/*items en liquidación */
              </div>`
 }
 
-function tarjetaItemDestacado(producto){/*items destacados */
-    return `<div class="main__newArrivals__item">
-                <img src=${producto.img} alt=${producto.alt}>
-                <p class="main__newArrivals__item__info">${producto.nombre}: </p>
-                <p class="main__newArrivals__item__price">$${producto.precio}</p>
-            </div>`
+function tarjetaItemDestacado(producto){/* items destacados */
+    let boton = ""
+    if (carrito.some((elemento)=> elemento.id === producto.id)){
+        boton = '<i class="fa-solid fa-xmark"></i>Quitar'
+    }else{
+        boton = '<i id="articles" class="fa-solid fa-cart-shopping"></i>Añadir'
+    }
+    return   `<div class="main__itemContainer col-lg-2 col-md-3 col-sm-4 col-6 ">
+                 <div class="main__item "><!-- PRODUCTOS -->
+                     <div class="item__innerBox"><!-- INTERIOR DE LA CAJA (ICONOS, IMG Y BOTON CARRITO) -->
+                         <div class="icons"><!-- icons -->
+                             <a class="text-decoration-none "><i class="fa-solid fa-heart"></i></a>
+                             <a class="text-decoration-none "><i class="fa-solid fa-eye"></i></a>
+                         </div>
+                         <img src=${producto.img} alt=${producto.alt}><!-- IMAGEN DEL PRODUCTO -->
+                         <div class=""><!-- BOTON DEL CARRRITO -->
+                             <button id="${producto.id}" class="btn btn-white shadow-sm rounded-pill bg-white cart-btn">${boton}</button>
+                         </div>
+                     </div>
+                     <div class="item__info"> <!-- INFO DEL PRODUCTO -->
+                         <div class="item__name">
+                             <p>${producto.nombre}</p>
+                         </div>
+                     <div class="item__price">
+                         <span id="precioOriginal">$${producto.precio}</span>
+                     </div>
+                     </div>    
+                 </div>     
+             </div>`
 }
 
 function retornarItemCarrito(prod){/* Lista de carrito */ 
+    let saleTag
+    let precioOriginalTachado
+    let precioConDescuento = (((100-prod.descuento)*prod.precio)/100)*prod.cantiadadEnCarrito    
+    if (prod.onSale===true){
+        saleTag = `<span id="saleTag"><i class="fa-solid fa-arrow-down"></i>${prod.descuento}</span>`
+        precioOriginalTachado = `<span id=precioOriginal>$${prod.precio}</span>`
+    }else{
+        saleTag=""
+        precioOriginalTachado=""
+    }
     return `\n<div class="prodCarrito">
-                <div><img class="imgCarrito" src=../${prod.img} alt=${prod.alt}></div>
+                <div>
+                    <img class="imgCarrito" src=../${prod.img} alt=${prod.alt}>
+                    ${saleTag}
+                </div>
                 <p class="nombreProdCarrito">${prod.nombre}</p>
-                <p class="precioProdCarrito">$${((100-prod.descuento)*prod.precio)/100}</p>
+                <p class="precioProdCarrito">${precioOriginalTachado}$${((100-prod.descuento)*prod.precio)/100}</p>
                 <div class="cantidadProdCarrito">
                     <button id="${prod.id}" class="btn decrementar" onclick="decrementarBtnCarrito(${prod.id})">-</button>
                     <span>${prod.cantiadadEnCarrito}</span>
                     <button id="${prod.id}" class="btn incrementar" onclick="incrementarBtnCarrito(${prod.id})">+</button>
                 </div>
-                <p class="subtotalProdCarrito">$${(((100-prod.descuento)*prod.precio)/100)*prod.cantiadadEnCarrito}</p>
+                <p class="subtotalProdCarrito">$${precioConDescuento.toFixed(2)}</p>
                 <div><i id="${prod.id}" class="fa-solid fa-xmark fa-2x"></i></div>
             </div>\n`
 }
@@ -186,14 +222,6 @@ function decrementarBtnCarrito(id){
     } 
 }
 
-
-/* function activarBtnCantidadCarrito(){
-    let incrementos = document.querySelectorAll('.btn.incrementar')
-    let decrementos = document.querySelectorAll('.btn.decrementar')
-    incrementos.forEach((boton) => {boton.addEventListener("click", incrementarBtnCarrito(boton.id))})
-    decrementos.forEach((boton) => {boton.addEventListener("click", decrementarBtnCarrito(boton.id))})
-} */
-
 function cargarListaDeCarrito(carrito){
     cargarCuerpoDeListaCarrito(carrito)
     cargarPieDeListaCarrito(carrito)
@@ -220,7 +248,7 @@ function cargarPieDeListaCarrito(carrito){
         total += ((((100 - prod.descuento)*prod.precio)/100)*prod.cantiadadEnCarrito)
     })
     if(carrito.length>0){
-        pieListaCarrito.innerHTML= `<button class="btnVaciarCarrito" onclick="vaciarCArrito()">Vaciar Carrito</button>\n<p class="importeTotal"> El importe total a abonar es de: $${total}</p>`
+        pieListaCarrito.innerHTML= `<button class="btnVaciarCarrito" onclick="vaciarCArrito()">Vaciar Carrito</button>\n<p class="importeTotal"> El importe total a abonar es de: <strong> $${total.toFixed(2)} </strong> </p>`
     }else{
         pieListaCarrito.innerHTML=""
     }

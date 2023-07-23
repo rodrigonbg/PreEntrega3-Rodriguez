@@ -1,18 +1,26 @@
 .main__indexContainer{
         margin: $margin-mobile-container;
+        h2{
+            padding: 5% 0 2% 0;
+        }
+        .section_container{
+            border-bottom: 2px solid $primary-color;
+        }
 }
 
 
 /* ----------------------------------------------------------------- */
-/* --------------------------------------------SECCION DE OFERTAS */
+/* --------------------------------------------TARJETAS DE ITEMS --- */
 /* ----------------------------------------------------------------- */
 
-.main__onSale{
-    .main__onSale__item{
+.main__itemContainer{
+    .main__item{
         padding-bottom: 5%;
-        .main__onSale__item__innerBox{
+        &:hover{
+            transform: scale(1.1, 1.1);
+        }
+        .item__innerBox{
             position: relative;
-
             .icons{
                 position: absolute;
                 display: flex;
@@ -89,7 +97,7 @@
             }
         }
 
-        .main__onSale__item__info{
+        .item__info{
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -106,10 +114,12 @@
                 display: flex;
                 flex-direction: column;
                 align-items: end;
-                #precioOriginal{
-                    font-size:small;
-                    text-decoration: line-through;
-                    color: $primary-color;
+                &.onSale{
+                    #precioOriginal{
+                        font-size:small;
+                        text-decoration: line-through;
+                        color: $primary-color;
+                    }                    
                 }
             }
         }
@@ -118,61 +128,6 @@
 
 
 
-
-
-
-
-
-
-/* ----------------------------------------------------------------- */
-/* --------------------------------------------SECCION DE DESTACADOS */
-/* ----------------------------------------------------------------- */
-
-.main__newArrivals{
-    @include flexCenter(row);
-    flex-wrap: wrap;
-    height: auto;
-}
-
-.main__newArrivals__item{
-    width: 9rem;
-    height: 18rem;
-    display: grid;
-    grid-template-rows: 4fr 1fr;
-    grid-template-columns: 2fr 1fr;
-    grid-template-areas: 
-        "img    img"
-        "info   price";
-    margin: 1%;
-    border: solid 1px #768561 ;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s ease-in;
-    img{
-        grid-area: img;
-        @include size(100%, 100%);
-    }
-    &:hover{
-        background-color: $primary-color;
-        color: #fff;
-        transform: scale(1.2, 1.2);
-    }
-}
-
-.main__newArrivals__item__info{
-    grid-area: info;
-    padding: 0.5%;
-    justify-self: center;
-    font-family: $font-family2;
-}
-
-.main__newArrivals__item__price{
-    grid-area: price;
-    padding: 0.5%;
-    justify-self: center;
-    font-family: $font-family2;
-}
 
 /* ----------------------------------------------------------------- */
 /* --------------------------------------------SECCION DE CATEGORIAS */

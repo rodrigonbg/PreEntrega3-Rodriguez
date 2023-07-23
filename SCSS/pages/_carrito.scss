@@ -54,17 +54,27 @@ main#carrito{
                     font-size: medium;
                     margin: 6%;
                 }
-            }  
+            }
             div{
                 display: flex;
                 justify-content: center;
                 width: 14%;
                 margin: 0;
+                position: relative;
                 .imgCarrito{
                     width: 5vw;
                 } 
                 i{
                     cursor: pointer;
+                }
+                span#saleTag{
+                    position: absolute;
+                    bottom: 0;
+                    right: 25%;
+                    background-color: black;
+                    color: white;
+                    border-radius: 15px;
+                    padding: 2px;
                 }
             }        
             p{
@@ -72,8 +82,13 @@ main#carrito{
                 justify-content: center;
                 width: 14%;
                 margin: 0;
-
-            }    
+                span#precioOriginal{
+                    font-size: small;
+                    text-decoration: line-through;
+                    color: $primary-color;
+                    padding-right: 2%;
+                }
+            }
         }
 
         .carritoVacio{
