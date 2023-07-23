@@ -935,8 +935,12 @@ main#carrito h1 { /* Titulos H1 */
   display: flex;
   justify-content: space-between;
 }
-.botonesCarrito .btn {
+.botonesCarrito a {
   width: 30%;
+  border-radius: 30px;
+}
+.botonesCarrito a .btn {
+  width: 100%;
   padding: 15px 0;
   margin: 1% 0;
   border-radius: 30px;
@@ -945,7 +949,7 @@ main#carrito h1 { /* Titulos H1 */
   font-weight: 600;
   cursor: pointer;
 }
-.botonesCarrito .btn:hover {
+.botonesCarrito a .btn:hover {
   background-color: #3a422f;
 }
 
@@ -1179,7 +1183,10 @@ body#error_page div.container div#goHome button:hover {
     transform: scale(1.1, 1.1);
   }
   .item__info .item__name {
-    font-size: large;
+    font-size: large !important;
+  }
+  .item__info .item__price {
+    font-size: medium !important;
   }
   .item__info .item__price.onSale #precioOriginal {
     font-size: small;
@@ -1294,21 +1301,21 @@ body#error_page div.container div#goHome button:hover {
     font-size: larger;
   }
   .tablaCarrito .cabezaLista p strong {
-    font-size: larger;
+    font-size: x-large;
   }
   .tablaCarrito .cuerpoLista .prodCarrito {
     padding: 20px 0;
   }
   .tablaCarrito .cuerpoLista .prodCarrito .cantidadProdCarrito .btn {
     padding: 15%;
-    font-size: larger;
+    font-size: x-large !important;
   }
   .tablaCarrito .cuerpoLista .prodCarrito .cantidadProdCarrito .btn:active {
     background-color: #8B9E70;
     color: white;
   }
   .tablaCarrito .cuerpoLista .prodCarrito .cantidadProdCarrito span {
-    font-size: larger;
+    font-size: x-large !important;
     margin: 6%;
   }
   .tablaCarrito .cuerpoLista .prodCarrito div .imgCarrito {
@@ -1323,10 +1330,10 @@ body#error_page div.container div#goHome button:hover {
     padding: 5px;
   }
   .tablaCarrito .cuerpoLista .prodCarrito p {
-    font-size: larger;
+    font-size: large;
   }
   .tablaCarrito .cuerpoLista .prodCarrito p span#precioOriginal {
-    font-size: small;
+    font-size: medium;
     text-decoration: line-through;
     color: #8B9E70;
   }

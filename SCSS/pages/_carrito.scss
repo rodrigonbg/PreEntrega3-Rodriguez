@@ -146,19 +146,23 @@ main#carrito{
     margin-top: 30px;
     display: flex;
     justify-content: space-between;
-
-    .btn{
-        width: 30%;
-        padding: 15px 0;
-        margin: 1% 0;
+    a{
+        width:30%;
         border-radius: 30px;
-        background-color: $primary-color;
-        color: white;
-        font-weight:600;
-        cursor: pointer;
-        &:hover{
-            background-color: $btn-darkGreen-hoven;
+        .btn{
+            width: 100%;
+            padding: 15px 0;
+            margin: 1% 0;
+            border-radius: 30px;
+            background-color: $primary-color;
+            color: white;
+            font-weight:600;
+            cursor: pointer;
+            &:hover{
+                background-color: $btn-darkGreen-hoven;
+            }        
         }        
     }
+
 
 }

@@ -175,9 +175,10 @@
 
     .item__info{
         .item__name{
-            font-size: large;
+            font-size: large !important;
         }
         .item__price{
+            font-size: medium !important;
             &.onSale{
                 #precioOriginal{
                     font-size:small;
@@ -338,7 +339,7 @@
             p{
                 font-size: larger;
                 strong{
-                    font-size:larger;
+                    font-size:x-large;
                 }
             }        
         }
@@ -348,14 +349,14 @@
                 .cantidadProdCarrito{
                     .btn{
                         padding: 15%;
-                        font-size: larger;
+                        font-size: x-large !important;
                         &:active{
                             background-color: $primary-color;
                             color: white;
                         }
                     }
                     span{
-                        font-size: larger;
+                        font-size: x-large !important;
                         margin: 6%;
                     }
                 }
@@ -373,9 +374,9 @@
                     }
                 }  
                 p{
-                    font-size: larger;
+                    font-size: large;
                     span#precioOriginal{
-                        font-size:small;
+                        font-size:medium;
                         text-decoration: line-through;
                         color: $primary-color;
                     }

@@ -20,7 +20,7 @@ const productos=[
 ];
 
 /* Lista de categorías */
-const categorias = [
+/* const categorias = [
     {nombre:"Dormitorio", img:"../Imagenes/Categorías/dormitorio.png", alt:"Dormitorio"},
     {nombre:"Cocina", img:"../Imagenes/Categorías/cocina.jpg", alt:"Cocina"},
     {nombre:"Living", img:"../Imagenes/Categorías/living.jpg", alt:"Living"},
@@ -30,7 +30,7 @@ const categorias = [
     {nombre:"Niños", img:"../Imagenes/Categorías/kids.jpg", alt:"Niños"},
     {nombre:"Textiles", img:"../Imagenes/Categorías/textiles.jpg", alt:"Textiles"},
     {nombre:"Iluminación", img:"../Imagenes/Categorías/iluminación.png", alt:"Iluminación"},
-];
+]; */
 
 /* PLANTILLAS LITERALES */
 function tarjetaItemOnSale(producto){/*items en liquidación */
@@ -43,7 +43,7 @@ function tarjetaItemOnSale(producto){/*items en liquidación */
     } 
     let precioConDescuento = ((100-producto.descuento)*producto.precio)/100
     return   `<div class="main__itemContainer col-lg-2 col-md-3 col-sm-4 col-6 ">
-                 <div class="main__item "><!-- PRODUCTOS -->
+                 <div class="main__item"><!-- PRODUCTOS -->
                      <div class="item__innerBox"><!-- INTERIOR DE LA CAJA (ICONOS, IMG Y BOTON CARRITO) -->
                          <div class="icons"><!-- icons -->
                              <a class="text-decoration-none "><i class="fa-solid fa-heart"></i></a>
