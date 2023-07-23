@@ -17,6 +17,7 @@ main#carrito{
 
 /* lista de productos en carrito */
 .tablaCarrito{
+    font-family:$font-family2;
     width:100%;
     font-size: smaller;
     .cabezaLista{
@@ -28,6 +29,9 @@ main#carrito{
             display: flex;
             justify-content: center;
             width: 14%;
+            strong{
+                font-size: smaller;
+            }
         }        
     }
     .cuerpoLista{
@@ -35,23 +39,34 @@ main#carrito{
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            padding: 10px 0;
             border-bottom: 1px solid $btn-lightGreen-hoven;
+            .precioProdCarrito{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
             .cantidadProdCarrito{
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 .btn{
-                    border-radius: 20px;
+                    display: flex;
+                    align-items: center;
+                    padding: 0%;
+                    padding: 20%;
+                    border-radius: 50px;
+                    width: 2%;
+                    height: 20px;
                     border-color: $primary-color;
-                    font-size: medium;
+                    font-size: smaller;
                     &:active{
                         background-color: $primary-color;
                         color: white;
                     }
                 }
                 span{
-                    font-size: medium;
+                    font-size: smaller;
                     margin: 6%;
                 }
             }
@@ -62,15 +77,16 @@ main#carrito{
                 margin: 0;
                 position: relative;
                 .imgCarrito{
-                    width: 5vw;
+                    width: 10vw;
                 } 
                 i{
                     cursor: pointer;
                 }
                 span#saleTag{
                     position: absolute;
+                    font-size: small;
                     bottom: 0;
-                    right: 25%;
+                    right: 0%;
                     background-color: black;
                     color: white;
                     border-radius: 15px;
@@ -82,11 +98,11 @@ main#carrito{
                 justify-content: center;
                 width: 14%;
                 margin: 0;
+                font-size: small;
                 span#precioOriginal{
-                    font-size: small;
+                    font-size:x-small;
                     text-decoration: line-through;
                     color: $primary-color;
-                    padding-right: 2%;
                 }
             }
         }
@@ -107,8 +123,9 @@ main#carrito{
         justify-content: space-between;
         margin: 20px 0;
         margin-right: 20px;
+        font-size: medium;
         .btnVaciarCarrito{
-            width: 10%;
+            width: 20%;
             padding: 5px 0;
             margin: 1% 0;
             border-radius: 30px;

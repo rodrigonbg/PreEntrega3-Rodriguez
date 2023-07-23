@@ -158,6 +158,7 @@
                 opacity: 1 !important;
                 cursor: pointer;
                 a{
+                    @include size(30px, 30px);
                     &:hover{
                         .fa-heart{
                             transform: scale(1.1, 1.1);  
@@ -169,8 +170,21 @@
                 }
             }
         }
+
     }
 
+    .item__info{
+        .item__name{
+            font-size: large;
+        }
+        .item__price{
+            &.onSale{
+                #precioOriginal{
+                    font-size:small;
+                }                    
+            }
+        }
+    }
 
 
     .main__categories__category{
@@ -312,9 +326,68 @@
             }
         }     
     }
+
+
+    /* ----------------------------------------------------------------- */
+    /* ------------------------------------------ RESPONSIVE DEL CARRITO */
+    /* ----------------------------------------------------------------- */
+
+    .tablaCarrito{
+
+        .cabezaLista{
+            p{
+                font-size: larger;
+                strong{
+                    font-size:larger;
+                }
+            }        
+        }
+        .cuerpoLista{
+            .prodCarrito{
+                padding: 20px 0;
+                .cantidadProdCarrito{
+                    .btn{
+                        padding: 15%;
+                        font-size: larger;
+                        &:active{
+                            background-color: $primary-color;
+                            color: white;
+                        }
+                    }
+                    span{
+                        font-size: larger;
+                        margin: 6%;
+                    }
+                }
+                div{
+                    .imgCarrito{
+                        width: 10vw;
+                    } 
+                    i{
+                        cursor: pointer;
+                    }
+                    span#saleTag{
+                        font-size: medium;
+                        border-radius: 25px;
+                        padding: 5px;
+                    }
+                }  
+                p{
+                    font-size: larger;
+                    span#precioOriginal{
+                        font-size:small;
+                        text-decoration: line-through;
+                        color: $primary-color;
+                    }
+                }
+
+            }
+        }
+
+    }
+
+
 }
-
-
 
 
 

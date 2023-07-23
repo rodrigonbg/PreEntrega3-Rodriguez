@@ -114,7 +114,7 @@ function retornarItemCarrito(prod){/* Lista de carrito */
     let precioOriginalTachado
     let precioConDescuento = (((100-prod.descuento)*prod.precio)/100)*prod.cantiadadEnCarrito    
     if (prod.onSale===true){
-        saleTag = `<span id="saleTag"><i class="fa-solid fa-arrow-down"></i>${prod.descuento}</span>`
+        saleTag = `<span id="saleTag"><i class="fa-solid fa-arrow-down"></i>${prod.descuento}%</span>`
         precioOriginalTachado = `<span id=precioOriginal>$${prod.precio}</span>`
     }else{
         saleTag=""
@@ -128,9 +128,9 @@ function retornarItemCarrito(prod){/* Lista de carrito */
                 <p class="nombreProdCarrito">${prod.nombre}</p>
                 <p class="precioProdCarrito">${precioOriginalTachado}$${((100-prod.descuento)*prod.precio)/100}</p>
                 <div class="cantidadProdCarrito">
-                    <button id="${prod.id}" class="btn decrementar" onclick="decrementarBtnCarrito(${prod.id})">-</button>
+                    <div id="${prod.id}" class="btn decrementar" onclick="decrementarBtnCarrito(${prod.id})">-</div>
                     <span>${prod.cantiadadEnCarrito}</span>
-                    <button id="${prod.id}" class="btn incrementar" onclick="incrementarBtnCarrito(${prod.id})">+</button>
+                    <div id="${prod.id}" class="btn incrementar" onclick="incrementarBtnCarrito(${prod.id})">+</div>
                 </div>
                 <p class="subtotalProdCarrito">$${precioConDescuento.toFixed(2)}</p>
                 <div><i id="${prod.id}" class="fa-solid fa-xmark fa-2x"></i></div>
