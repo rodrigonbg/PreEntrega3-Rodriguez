@@ -1,2 +1,2 @@
-
+/* EJECUCIONES */
 crearItems(productos);

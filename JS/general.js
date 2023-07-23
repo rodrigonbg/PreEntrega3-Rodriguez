@@ -32,23 +32,15 @@ const categorias = [
     {nombre:"Iluminación", img:"../Imagenes/Categorías/iluminación.png", alt:"Iluminación"},
 ];
 
-function acutalizarContadorCarrito(){
-    let iconCarrito = document.querySelector('i#car span')
-        if(carrito.length>0){
-            iconCarrito.innerHTML = carrito.length
-        }else{
-            iconCarrito.innerHTML = ''
-        }
-}
-
-/* Plantillas Literales */
+/* PLANTILLAS LITERALES */
 function tarjetaItemOnSale(producto){/*items en liquidación */
+
     let boton = ""
-    if (carrito.some((elemento)=> elemento.id === producto.id)){
+    if (carrito.some((elemento)=> elemento.id === producto.id)){/* creo la variable botón segun corresponda por cada prod. (si está o no en el carrito) */
         boton = '<i class="fa-solid fa-xmark"></i>Quitar'
     }else{
         boton = '<i id="articles" class="fa-solid fa-cart-shopping"></i>Añadir'
-    }
+    } 
     let precioConDescuento = ((100-producto.descuento)*producto.precio)/100
     return   `<div class="main__itemContainer col-lg-2 col-md-3 col-sm-4 col-6 ">
                  <div class="main__item "><!-- PRODUCTOS -->
@@ -76,11 +68,11 @@ function tarjetaItemOnSale(producto){/*items en liquidación */
                      </div>    
                  </div>     
              </div>`
-}
+}/* boton del carrito con id del producto */
 
 function tarjetaItemDestacado(producto){/* items destacados */
     let boton = ""
-    if (carrito.some((elemento)=> elemento.id === producto.id)){
+    if (carrito.some((elemento)=> elemento.id === producto.id)){/* creo la variable botón segun corresponda por cada prod. (si está o no en el carrito) */
         boton = '<i class="fa-solid fa-xmark"></i>Quitar'
     }else{
         boton = '<i id="articles" class="fa-solid fa-cart-shopping"></i>Añadir'
@@ -107,13 +99,13 @@ function tarjetaItemDestacado(producto){/* items destacados */
                      </div>    
                  </div>     
              </div>`
-}
+}/* boton del carrito con id del producto */
 
 function retornarItemCarrito(prod){/* Lista de carrito */ 
     let saleTag
     let precioOriginalTachado
     let precioConDescuento = (((100-prod.descuento)*prod.precio)/100)*prod.cantiadadEnCarrito    
-    if (prod.onSale===true){
+    if (prod.onSale===true){/* creo el item dependiendo de si el producto está en loquidación o no */
         saleTag = `<span id="saleTag"><i class="fa-solid fa-arrow-down"></i>${prod.descuento}%</span>`
         precioOriginalTachado = `<span id=precioOriginal>$${prod.precio}</span>`
     }else{
@@ -135,9 +127,9 @@ function retornarItemCarrito(prod){/* Lista de carrito */
                 <p class="subtotalProdCarrito">$${precioConDescuento.toFixed(2)}</p>
                 <div><i id="${prod.id}" class="fa-solid fa-xmark fa-2x"></i></div>
             </div>\n`
-}
+}/* botones incrementar, decrementar y quitar del carrito con id del producto */
 
-/* Funciones para funcionalidades del carrito */
+/* FUNCINES PARA FUNCIONALIDADES DEL CARRITO */
 function irAlCarritoDesdePages(){
     location.href='Carrito.html'
 }
@@ -147,21 +139,21 @@ function irAlCarritoDesdeIndex(){
 }
 
 function agregarACarrito(id){
-    let item = productos.find((producto) => {
+    let item = productos.find((producto) => { /* guardo el item a agregar, dependiendo el id ingresado, en una variable*/
         return producto.id === id
     })
-    item.cantiadadEnCarrito = 1
-    carrito.push(item)
-    actualizarLocalStorageCarrito()
+    item.cantiadadEnCarrito = 1 /* aumento la cantidad del item */
+    carrito.push(item) /* agrego el item al carrito  */
+    actualizarLocalStorageCarrito() 
 }
 
 function quitarDeCarrito(id){
-    let item = carrito.find((producto) => {
+    let item = carrito.find((producto) => {/* guardo el item a agregar, dependiendo el id ingresado, en una variable*/
         return producto.id === parseInt(id)
     })
-    if(item != -1){
+    if(item != -1){ /* si el item está en el carrito, obtengo su index en el carrito */
         let index=carrito.indexOf(item)
-        carrito.splice(index, 1)
+        carrito.splice(index, 1) /* elimino el item del array carrito */
         actualizarLocalStorageCarrito()
     }   
 }
@@ -173,89 +165,79 @@ function actualizarLocalStorageCarrito(){
 }
 
 function recuperarCarrito(){
-    let carrito = localStorage.getItem("carrito")
-    if (carrito){
-        return JSON.parse(carrito)
+    let carrito = localStorage.getItem("carrito") /* obtengo el carrito de localStorage */
+    if (carrito){ 
+        return JSON.parse(carrito) /* si carrito está en el localStorage, retorno el objeto con JSON.parse */
     }else{
-        return []
+        return [] /* si carrito no está en el localStorage es porq está vacio. retorno un array vacío */
     }
 }
 
 function vaciarCArrito(){
-    localStorage.clear()
-    carrito = recuperarCarrito()
-    cargarListaDeCarrito(carrito)
+    localStorage.removeItem("carrito") /* limpio el carrito en local storage, queda vacío*/
+    carrito = recuperarCarrito() /* retorna un array vacío */
+    cargarListaDeCarrito(carrito) /* recargo items en ventana carrito */
 }
 
-function activarItemCarritoBtnQuitar(){
-    const botonesDeCarritoQuitar = document.querySelectorAll('.fa-solid.fa-xmark.fa-2x')
-    /* por cada botón, agrego el listener del click */
+function activarItemCarritoBtnQuitar(){ /* funcion para darle funcionalidad a los iconos X de quitar en lista de items del carrito */
+    const botonesDeCarritoQuitar = document.querySelectorAll('.fa-solid.fa-xmark.fa-2x') /* nodos de icons X en lista de carrito */
     botonesDeCarritoQuitar.forEach((boton)=>{
-        boton.addEventListener("click", ()=>{
-            quitarDeCarrito(boton.id)
-            acutalizarContadorCarrito()
-            console.table(carrito)
-            cargarListaDeCarrito(carrito)    
+        boton.addEventListener("click", ()=>{ /* por cada botón, agrego el listener del click */
+            quitarDeCarrito(boton.id) /* quito el item */
+            acutalizarContadorCarrito() /* actualizo el contador del header */
+            console.table(carrito) /* veo en la canosola el table (para ir viendo el funcionamiento) */
+            cargarListaDeCarrito(carrito) /* recaro la lista de items */
         })
     })
 }
 
-function incrementarBtnCarrito(id){
-    let index = carrito.findIndex((el)=> el.id === parseInt(id))
-    if(carrito[index].cantiadadEnCarrito>=1 ){
+function incrementarBtnCarrito(id){ /* funcionalidad a botón de incremento en item-carrito (+) */
+    let index = carrito.findIndex((el)=> el.id === parseInt(id)) /* cuardo el index en carrito del item a incrementar */
+    if(carrito[index].cantiadadEnCarrito>=1 ){ /* si la cantidad es mayor o igual a 1, incremento */
         carrito[index].cantiadadEnCarrito+=1
-        actualizarLocalStorageCarrito()
-        cargarCuerpoDeListaCarrito(carrito)
-        cargarPieDeListaCarrito(carrito)
-        activarItemCarritoBtnQuitar()
+        actualizarLocalStorageCarrito() /* actualizo local storage */
+        cargarListaDeCarrito(carrito) /* recargo la lista de items */
     } 
 }
 
-function decrementarBtnCarrito(id){
-    let index = carrito.findIndex((el)=> el.id === parseInt(id))
-    if(carrito[index].cantiadadEnCarrito>1){
+function decrementarBtnCarrito(id){ /* funcionalidad a botón de Decremento en item-carrito (-) */
+    let index = carrito.findIndex((el)=> el.id === parseInt(id)) /* cuardo el index en carrito del item a decrementar */
+    if(carrito[index].cantiadadEnCarrito>1){/* si la cantidad es mayor o igual a 1, Decremento */
         carrito[index].cantiadadEnCarrito-=1
-        actualizarLocalStorageCarrito()
-        cargarCuerpoDeListaCarrito(carrito)
-        cargarPieDeListaCarrito(carrito)
-        activarItemCarritoBtnQuitar()
+        actualizarLocalStorageCarrito() /* actualizo local storage */
+        cargarListaDeCarrito(carrito) /* recargo la lista de items */
     } 
 }
 
 function cargarListaDeCarrito(carrito){
-    cargarCuerpoDeListaCarrito(carrito)
-    cargarPieDeListaCarrito(carrito)
-    activarItemCarritoBtnQuitar()
+    cargarCuerpoDeListaCarrito(carrito)/* cargo la lista de items */
+    cargarPieDeListaCarrito(carrito) /* cargo el precio total */
+    activarItemCarritoBtnQuitar() /* activo los botones de quitar item nuevamente. */
 }
 
 function cargarCuerpoDeListaCarrito(carrito){
-    let cuerpoListaCarrito = document.querySelector(".cuerpoLista")
-    cuerpoListaCarrito.innerHTML =""
-    if (carrito.length == 0){
-        /* Si el carrito está vacío, agrego un mensaje */
+    let cuerpoListaCarrito = document.querySelector(".cuerpoLista") /* nodo de cuerpo de la lista */
+    cuerpoListaCarrito.innerHTML ="" /* vacío el nodo */
+    if (carrito.length == 0){ /* Si el carrito está vacío, agrego un mensaje */
         cuerpoListaCarrito.innerHTML='<p class="carritoVacio">El carrito Está vacío. Agrega algunos articulos.</p>'
     }else{/* Si el carrito tiene productos, retorno los items */
-        carrito.forEach(prod => {
-            cuerpoListaCarrito.innerHTML += retornarItemCarrito(prod)
-        });
+        carrito.forEach(prod => {cuerpoListaCarrito.innerHTML += retornarItemCarrito(prod)});
     }
 }
 
 function cargarPieDeListaCarrito(carrito){
-    let pieListaCarrito = document.querySelector(".pieLista")
-    let total = 0
-    carrito.forEach((prod)=>{
-        total += ((((100 - prod.descuento)*prod.precio)/100)*prod.cantiadadEnCarrito)
-    })
-    if(carrito.length>0){
+    let pieListaCarrito = document.querySelector(".pieLista") /* nodo de pie de lista */
+    if(carrito.length>0){ /* si el carrito tiene items, muestro el total y un botón de vaciar */
+        let total = 0 /* inicializo el total en 0 */
+        carrito.forEach((prod)=>{ total += ((((100 - prod.descuento)*prod.precio)/100)*prod.cantiadadEnCarrito)}) /* acumulo el precio en el total (FullPrice y OnSale) */
         pieListaCarrito.innerHTML= `<button class="btnVaciarCarrito" onclick="vaciarCArrito()">Vaciar Carrito</button>\n<p class="importeTotal"> El importe total a abonar es de: <strong> $${total.toFixed(2)} </strong> </p>`
-    }else{
+    }else{/* si el carrito no tiene items, no muestro nada */
         pieListaCarrito.innerHTML=""
     }
 
 }
 
-function acutalizarContadorCarrito(){
+function acutalizarContadorCarrito(){/* selecciono el nodo del icono car, y le agrego la longitud del carrtio*/
     let iconCarrito = document.querySelector('i#car span')
         if(carrito.length>0){
             iconCarrito.innerHTML = carrito.length
@@ -264,18 +246,17 @@ function acutalizarContadorCarrito(){
         }
 }
 
-/* Funciones para tarjeta de index */
-function activarItemsBtnAdd(){
-    const botonesDeCarritoAdd = document.querySelectorAll('.cart-btn')
-    /* por cada botón, agrego el listener del click */
-    botonesDeCarritoAdd.forEach((boton)=>{
+/* FUNCIONES PARA TARJETAS DE INDEX */
+function activarItemsBtnAdd(){ /* activar los botones de "agregar" y "Quitar" de las tarjetas de productos */
+    const botonesDeCarritoAdd = document.querySelectorAll('.cart-btn') /* nodo de los botones */
+    botonesDeCarritoAdd.forEach((boton)=>{ /* por cada botón, agrego el listener del click */
         boton.addEventListener("click", ()=>{
-            if(boton.innerText.includes("Añadir")){
+            if(boton.innerText.includes("Añadir")){ /* si está en "Añadir", al clickear se cambia a Quitar */
                 agregarACarrito(parseInt(boton.id))
                 boton.innerHTML = '<i class="fa-solid fa-xmark"></i>Quitar'
                 acutalizarContadorCarrito()
                 console.table(carrito)                
-            }else{ 
+            }else{  /* si está en "Quitar", al clickear se cambia a Añadir */
                 quitarDeCarrito(boton.id)
                 acutalizarContadorCarrito()
                 console.table(carrito)
@@ -285,21 +266,19 @@ function activarItemsBtnAdd(){
     })
 }
 
-function crearItems(productos){
-    const itemsOnSale = document.querySelector("#itemsOnSale")
-    const itemsDestacados = document.querySelector("#itemsDestacados")
+function crearItems(productos){ /* funcion que crea los items en index */
+    const itemsOnSale = document.querySelector("#itemsOnSale") /* Nodo de container de OnSale */
+    const itemsDestacados = document.querySelector("#itemsDestacados") /* Nodo de container de Destacados */
     productos.forEach(producto => {
-        if(producto.onSale === true){
-            /* Creo la tarjeta de sale con la funcion y la agrego al nodo */
+        if(producto.onSale === true){ /* Creo la tarjeta de sale con la funcion y la agrego al nodo */
             itemsOnSale.innerHTML += tarjetaItemOnSale(producto)
-        }else{
-            /* Creo al tarjeta destacado con la funcion y la agrego alnodo */
+        }else{/* Creo al tarjeta destacado con la funcion y la agrego alnodo */
             itemsDestacados.innerHTML += tarjetaItemDestacado(producto)
         }
     });
-    activarItemsBtnAdd()
+    activarItemsBtnAdd() /* Luego de creados las tarjetas, activo los botones */
 }
 
-/* Ejecuciones */
+/* EJECUCIONES */
 let carrito = recuperarCarrito()
 acutalizarContadorCarrito()
