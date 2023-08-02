@@ -1,3 +1,4 @@
+
 /* EJECUCIONES */
 cargarListaDeCarrito(carrito)
 acutalizarContadorCarrito()

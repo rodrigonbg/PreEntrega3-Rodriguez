@@ -144,7 +144,17 @@ function agregarACarrito(id){
     })
     item.cantiadadEnCarrito = 1 /* aumento la cantidad del item */
     carrito.push(item) /* agrego el item al carrito  */
-    actualizarLocalStorageCarrito() 
+    actualizarLocalStorageCarrito()
+    acutalizarContadorCarrito()
+    Toastify({
+        text: `producto "${item.nombre}" agregado al carrito`,
+        duration: 3500,
+        close: true,
+        gravity: "bottom", // `top` or `bottom`
+        position: "left", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        className: "mensajeToastify agregado"
+      }).showToast();
 }
 
 function quitarDeCarrito(id){
@@ -155,6 +165,16 @@ function quitarDeCarrito(id){
         let index=carrito.indexOf(item)
         carrito.splice(index, 1) /* elimino el item del array carrito */
         actualizarLocalStorageCarrito()
+        acutalizarContadorCarrito()
+        Toastify({
+            text: `producto "${item.nombre}" quitado del carrito`,
+            duration: 3500,
+            close: true,
+            gravity: "bottom", // `top` or `bottom`
+            position: "left", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            className: "mensajeToastify quitado"
+          }).showToast();
     }   
 }
 
@@ -167,16 +187,100 @@ function actualizarLocalStorageCarrito(){
 function recuperarCarrito(){
     let carrito = localStorage.getItem("carrito") /* obtengo el carrito de localStorage */
     if (carrito){ 
-        return JSON.parse(carrito) /* si carrito está en el localStorage, retorno el objeto con JSON.parse */
+        return JSON.parse(carrito)  /* si carrito está en el localStorage, retorno el objeto con JSON.parse */
     }else{
         return [] /* si carrito no está en el localStorage es porq está vacio. retorno un array vacío */
     }
 }
 
-function vaciarCArrito(){
+function vaciarCarrito(){
     localStorage.removeItem("carrito") /* limpio el carrito en local storage, queda vacío*/
     carrito = recuperarCarrito() /* retorna un array vacío */
     cargarListaDeCarrito(carrito) /* recargo items en ventana carrito */
+    acutalizarContadorCarrito()
+}
+
+function btnVaciarCarrito(){
+    Swal.fire({
+        icon: 'question',
+        title: '¿Seguro que desea vaciar el carrito?',
+        showDenyButton: true,    
+        confirmButtonText: 'Vaciar',
+        denyButtonText: 'Cancelar',
+        customClass: {
+            confirmButton:"btnConfirm",
+            denyButton: "btnDeny",
+            icon: "iconQuestion",
+            title: "titleQuestion",  
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Carrito vaciado',    
+                showConfirmButton:false,
+                timer: 2000,
+                customClass: {
+                    title: "titleSuccess",  
+                }
+            })
+            vaciarCarrito()
+            window.scroll({top: 0})
+        }else if (result.isDenied) {
+            Swal.fire({
+                icon:'success',
+                title: 'Genial',
+                showConfirmButton: false,
+                timer: 1000,
+                customClass: {
+                    title: "titleSuccess",  
+                }
+            })
+        }
+    })
+}
+
+function btnComprar(){
+    if(carrito.length>0){
+        Swal.fire({
+            icon: 'question',
+            title: '¿Desea confirmar su compra?',
+            showDenyButton: true,    
+            confirmButtonText: 'Comprar',
+            denyButtonText: 'Cancelar',
+            customClass: {
+                confirmButton:"btnConfirm",
+                denyButton: "btnDeny",
+                icon: "iconQuestion",
+                title: "titleQuestion",  
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Gracias por su compra!!!',
+                    showDenyButton: false,    
+                    confirmButtonText: 'OK',
+                    timer: 2500,
+                    customClass: {
+                        confirmButton:"btnConfirm",
+                        title: "titleSuccess",  
+                    }
+                })
+                vaciarCarrito()
+            }
+        })        
+    }else{
+        Swal.fire({
+            icon: 'error',
+            title: 'Agregue productos al carrito primero',
+            showConfirmButton: false,
+            timer: 1500,
+            customClass: {
+                title: "titleError" 
+            }
+        })
+    }
 }
 
 function activarItemCarritoBtnQuitar(){ /* funcion para darle funcionalidad a los iconos X de quitar en lista de items del carrito */
@@ -184,7 +288,6 @@ function activarItemCarritoBtnQuitar(){ /* funcion para darle funcionalidad a lo
     botonesDeCarritoQuitar.forEach((boton)=>{
         boton.addEventListener("click", ()=>{ /* por cada botón, agrego el listener del click */
             quitarDeCarrito(boton.id) /* quito el item */
-            acutalizarContadorCarrito() /* actualizo el contador del header */
             console.table(carrito) /* veo en la canosola el table (para ir viendo el funcionamiento) */
             cargarListaDeCarrito(carrito) /* recaro la lista de items */
         })
@@ -219,7 +322,13 @@ function cargarCuerpoDeListaCarrito(carrito){
     let cuerpoListaCarrito = document.querySelector(".cuerpoLista") /* nodo de cuerpo de la lista */
     cuerpoListaCarrito.innerHTML ="" /* vacío el nodo */
     if (carrito.length == 0){ /* Si el carrito está vacío, agrego un mensaje */
-        cuerpoListaCarrito.innerHTML='<p class="carritoVacio">El carrito Está vacío. Agrega algunos articulos.</p>'
+        cuerpoListaCarrito.innerHTML=  `<div class="cardContainer">
+                                            <div class="cardCarritoVacio">
+                                                <img src="../Iconos/caraTriste.png" alt="">
+                                                <p>El Carrito de compras se encuentra vacío.</p>
+                                                <p>Agregue algunos productos antes de realizar la compra.</p>
+                                            </div>
+                                        </div>`
     }else{/* Si el carrito tiene productos, retorno los items */
         carrito.forEach(prod => {cuerpoListaCarrito.innerHTML += retornarItemCarrito(prod)});
     }
@@ -230,7 +339,7 @@ function cargarPieDeListaCarrito(carrito){
     if(carrito.length>0){ /* si el carrito tiene items, muestro el total y un botón de vaciar */
         let total = 0 /* inicializo el total en 0 */
         carrito.forEach((prod)=>{ total += ((((100 - prod.descuento)*prod.precio)/100)*prod.cantiadadEnCarrito)}) /* acumulo el precio en el total (FullPrice y OnSale) */
-        pieListaCarrito.innerHTML= `<button class="btnVaciarCarrito" onclick="vaciarCArrito()">Vaciar Carrito</button>\n<p class="importeTotal"> El importe total a abonar es de: <strong> $${total.toFixed(2)} </strong> </p>`
+        pieListaCarrito.innerHTML= `<button class="btnVaciarCarrito" onclick="btnVaciarCarrito()">Vaciar Carrito</button>\n<p class="importeTotal"> El importe total a abonar es de: <strong> $${total.toFixed(2)} </strong> </p>`
     }else{/* si el carrito no tiene items, no muestro nada */
         pieListaCarrito.innerHTML=""
     }
@@ -239,11 +348,11 @@ function cargarPieDeListaCarrito(carrito){
 
 function acutalizarContadorCarrito(){/* selecciono el nodo del icono car, y le agrego la longitud del carrtio*/
     let iconCarrito = document.querySelector('i#car span')
-        if(carrito.length>0){
-            iconCarrito.innerHTML = carrito.length
-        }else{
-            iconCarrito.innerHTML = ''
-        }
+    if(carrito.length>0){
+        iconCarrito.innerHTML = carrito.length
+    }else{
+        iconCarrito.innerHTML = ''
+    }
 }
 
 /* FUNCIONES PARA TARJETAS DE INDEX */
@@ -254,11 +363,9 @@ function activarItemsBtnAdd(){ /* activar los botones de "agregar" y "Quitar" de
             if(boton.innerText.includes("Añadir")){ /* si está en "Añadir", al clickear se cambia a Quitar */
                 agregarACarrito(parseInt(boton.id))
                 boton.innerHTML = '<i class="fa-solid fa-xmark"></i>Quitar'
-                acutalizarContadorCarrito()
                 console.table(carrito)                
             }else{  /* si está en "Quitar", al clickear se cambia a Añadir */
                 quitarDeCarrito(boton.id)
-                acutalizarContadorCarrito()
                 console.table(carrito)
                 boton.innerHTML = '<i id="articles" class="fa-solid fa-cart-shopping"></i>Añadir'
             }
@@ -269,8 +376,10 @@ function activarItemsBtnAdd(){ /* activar los botones de "agregar" y "Quitar" de
 function crearItems(productos){ /* funcion que crea los items en index */
     const itemsOnSale = document.querySelector("#itemsOnSale") /* Nodo de container de OnSale */
     const itemsDestacados = document.querySelector("#itemsDestacados") /* Nodo de container de Destacados */
+    itemsOnSale.innerHTML='' /* elimino las cards existentes */
+    itemsDestacados.innerHTML=''
     productos.forEach(producto => {
-        if(producto.onSale === true){ /* Creo la tarjeta de sale con la funcion y la agrego al nodo */
+        if(producto.onSale === true){ /* Creo las tarjeta de sale con la funcion y la agrego al nodo */
             itemsOnSale.innerHTML += tarjetaItemOnSale(producto)
         }else{/* Creo al tarjeta destacado con la funcion y la agrego alnodo */
             itemsDestacados.innerHTML += tarjetaItemDestacado(producto)
@@ -279,6 +388,56 @@ function crearItems(productos){ /* funcion que crea los items en index */
     activarItemsBtnAdd() /* Luego de creados las tarjetas, activo los botones */
 }
 
+function activarBuscadorHeader(){
+    let searchBar = document.querySelector('.header__searchBar')/* Nodo de la barra de busqueda */
+    if (document.querySelector('#index') !== null){ /* SE EJECUTA SOLO SI ESTAMOS EN INDEX */
+        searchBar.addEventListener('keyup', (e)=>{
+            let filtrados = productos.filter((el)=> el.nombre.toUpperCase().includes(searchBar.value.toUpperCase())) /* Filtro segun el valor de la barra de busueda */
+            crearItems(filtrados)/* creo los items */
+            let itemsOnSale = document.querySelector("#itemsOnSale") /* Nodo de container de OnSale */
+            let itemsDestacados = document.querySelector("#itemsDestacados") /* Nodo de container de Destacados */
+            if(itemsOnSale.innerHTML===''){ /* si el container de items on sale está vacío despues del filtrado, mustro un mensaje de No coincidencia */
+                itemsOnSale.innerHTML =`<div class="cardSinCoindicencias">
+                                            <div class="mensaje">
+                                                <img src="../Iconos/caraTriste.png" alt="carita triste">
+                                                <p>No se han encontrado productos OnSale para su busqueda.</p>
+                                            </div>
+                                        </div>`
+            }
+            if(itemsDestacados.innerHTML===''){/* si el container de destacados está vacío despues del filtrado, mustro un mensaje de No coincidencia */
+                itemsDestacados.innerHTML =`<div class="cardSinCoindicencias">
+                                                <div class="mensaje">
+                                                    <img src="../Iconos/caraTriste.png" alt="carita triste">
+                                                    <p>No se han encontrado productos Destacados para su busqueda.</p>
+                                                </div>
+                                            </div>`
+            }
+
+            
+
+            console.log(e)
+
+        })
+    }/* else{
+        searchBar.addEventListener('keyup', (eve)=>{
+            if (eve.key==="Enter"){
+                location.href = "../index.html"
+                searchBar = document.querySelector('.header__searchBar')
+                let filtrados = productos.filter((el)=> el.nombre.includes(searchBar.value))
+                crearItems(filtrados) 
+                console.log(eve)   
+            }
+        })
+    } */
+    
+}
+
+
+
+
+
+
 /* EJECUCIONES */
 let carrito = recuperarCarrito()
 acutalizarContadorCarrito()
+activarBuscadorHeader()
