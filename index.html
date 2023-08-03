@@ -103,7 +103,7 @@
                 </div>
 
                 <!-- login -->
-                <input class="header__loginButton" type="button" value="Login">
+                <input  onclick="aunNoDesarrollado()" class="header__loginButton" type="button" value="Login">
             </span>
         </section>
 
@@ -138,8 +138,8 @@
             </section>
 
             <section class="header__buttons"><!-- Botones buy now, explore-->
-                    <input class="header__buyNowButton" type="button" value="Buy Now">
-                    <input class="header__ExploreButton" type="button" value="Explore">
+                    <input onclick="irAlCarritoDesdeIndex()" class="header__buyNowButton" type="button" value="Buy Now">
+                    <input onclick="location.href='Pages/Furnitures.html'" class="header__ExploreButton" type="button" value="Explore">
             </section>
         </section>
     </header>
@@ -212,9 +212,9 @@
             <div class="footer__newsLetter"><!-- Sescripción al newsletter -->
                     <h4 class="footer__tittle">NewsLetter</h4>
                     <p class="footer__texto">Para suscribirse a nuestro portal de noticias, registresé con su correo electronico.</p>
-                    <Form>
+                    <Form id="newsLetter">
                         <input type="email" name="email" id="email">
-                        <input type="button" value="Enviar">
+                        <input type="submit" value="Enviar">
                     </Form>
             </div>
         </section>

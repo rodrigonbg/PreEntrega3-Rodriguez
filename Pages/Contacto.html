@@ -11,6 +11,11 @@
     <!-- KEYWORDS -->
     <meta name="keywords" content="Contacto, Información de contacto, Formulario de contacto, Soporte al cliente, Servicio al cliente, Consultas, Preguntas, Reclamos, Asistencia, Ayuda">
 
+    <!-- SWEET-ALERT -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.20/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.20/dist/sweetalert2.min.css" rel="stylesheet">
+
+
     <!-- Google fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;500;600;700&family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- CSS BOOTSTRAP -->
@@ -24,6 +29,7 @@
 
     <!-- JS -->
     <script defer src="../JS/general.js"></script>
+    <script defer src="../JS/contacto.js"></script>
 </head>
 <body>
     <header>
@@ -94,7 +100,7 @@
                 </div>
                 
                 <!-- login -->
-                <input class="header__loginButton" type="button" value="Login">
+                <input  onclick="aunNoDesarrollado()" class="header__loginButton" type="button" value="Login">
             </span>
         </section>
         <img class="header__waves" src="../Imagenes/Waves-Header.png" alt="borde del header">
@@ -106,23 +112,23 @@
             <form class="main__contactContainer__fields" action="">
                 <div>
                     <label class="main__contact__label" for="nombre">Nombre:</label>
-                    <input class="main__contact__TextField" type="text" placeholder="ej.: Rodrigo Rodriguez" name="nombre" required>
+                    <input id="nombre" class="main__contact__TextField" type="text" placeholder="ej.: Rodrigo Rodriguez" name="nombre" required>
                 </div>
                 <div>
                     <label class="main__contact__label" for="email">Email:</label>
-                    <input class="main__contact__TextField" type="email" placeholder="ej.: Rodrigonbg@hotmail.com" name="email" required>
+                    <input id="email" class="main__contact__TextField" type="email" placeholder="ej.: Rodrigonbg@hotmail.com" name="email" required>
                 </div>    
                 <div>
                     <label class="main__contact__label" for="telefono">Telefono:</label>
-                    <input class="main__contact__TextField" type="number" placeholder="ej.: +598092987977" name="telefono" required>
+                    <input id="tel" class="main__contact__TextField" type="number" placeholder="ej.: +598092987977" name="telefono" required>
                 </div>
                 <div>
                     <label class="main__contact__label" for="asunto">Asunto:</label>
-                    <input class="main__contact__TextField" type="text" placeholder="ej.: Producto defectuso" name="asunto" required>
+                    <input id="asunto" class="main__contact__TextField" type="text" placeholder="ej.: Producto defectuso" name="asunto" required>
                 </div>
                 <div>
                     <label class="main__contact__label" for="comentario">Comentario:</label>
-                    <textarea class="main__contact__TextField" name="comentario" id="" cols="30" rows="10" required></textarea>
+                    <textarea id="text" class="main__contact__TextField" name="comentario" cols="30" rows="10" required></textarea>
                 </div>
                 <div>
                     <input class="main__contact__SubmitButton" type="submit" value="Enviar">
@@ -162,9 +168,9 @@
             <div class="footer__newsLetter"><!-- Sescripción al newsletter -->
                     <h4 class="footer__tittle">NewsLetter</h4>
                     <p class="footer__texto">Para suscribirse a nuestro portal de noticias, registresé con su correo electronico.</p>
-                    <Form>
+                    <Form id="newsLetter">
                         <input type="email" name="email" id="email">
-                        <input type="button" value="Enviar">
+                        <input type="submit" value="Enviar">
                     </Form>
             </div>
         </section>
